@@ -37,8 +37,48 @@ class DataController extends AbstractController
         }
 
         return $this->render('data/index.html.twig', [
-            'controller_name' => 'DataController',
             'csv_file_form' => $csvFileForm->createView()
         ]);
+    }
+
+    #[Route('/raport', name: 'app_raport')]
+    public function generateRaport(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $dataRepository = $doctrine->getRepository(Data::class);
+        $version = $request->get('version');
+        $raportDate = $request->get('raport-date');
+
+        $fileName = 'Raport' . $version . '.csv';
+        if (1 == $version) {
+            $fileHeaders = [
+                'Nr rozliczeniowy',
+                'Imię i Nazwisko',
+                'Status Zamówienia',
+                'Liczba zamówień',
+                'Suma kosztów',
+                'Unikalne nazwy ofert'
+            ];
+            $results = $dataRepository->getRaport1Data($raportDate);
+        } else {
+            $fileHeaders = [
+                'Miesiąc',
+                'Czy Upgrade',
+                'Nazwa oferty',
+                'Liczba zamówień'
+            ];
+            $results = $dataRepository->getRaport2Data($raportDate);
+        }
+
+        $rows = [];
+        $rows[] = implode(';', $fileHeaders);
+        foreach ($results as $result) {
+            $rows[] = implode(';', $result);
+        }
+        $content = implode("\n", $rows);
+        $response = new Response($content);
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment; filename=' . $fileName);
+
+        return $response;
     }
 }

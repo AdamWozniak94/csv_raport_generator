@@ -3,23 +3,67 @@
 {% block title %}Hello DataController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; display: flex }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
     <div>
         {{ form(csv_file_form) }}
     </div>
     <div>
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a href="{{ 'D:/wamp64/www/raport_generator/src/Controller/DataController.php'|file_link(0) }}">src/Controller/DataController.php</a></code></li>
-            <li>Your template at <code><a href="{{ 'D:/wamp64/www/raport_generator/templates/data/index.html.twig'|file_link(0) }}">templates/data/index.html.twig</a></code></li>
-        </ul>
+        <button id="raport-1">Wygeneruj raport 1</button>
+        <button id="raport-2">Wygeneruj raport 2</button>
     </div>
 </div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+        </div>
+        <form id="raport-form" action="{{ path('app_raport') }}" method="post">
+            <div class="modal-body">
+                <label for="raport-date">Data raportu</label>
+                <input type="date" name="raport-date" id="raport-date">
+                <input type="hidden" name="version" id="input-version">
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Wygeneruj">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var modal = document.getElementById("modal");
+
+        var btnRaport1 = document.getElementById("raport-1");
+        var btnRaport2 = document.getElementById("raport-2");
+
+        var title = document.getElementById("modal-title");
+        var version = document.getElementById("input-version");
+        var span = document.getElementsByClassName("close")[0];
+
+        btnRaport1.onclick = function() {
+            title.textContent = 'Wygeneruj raport 1';
+            version.value = 1;
+            modal.style.display = "block";
+        }
+
+        btnRaport2.onclick = function() {
+            title.textContent = 'Wygeneruj raport 2';
+            version.value = 2;
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 {% endblock %}
