@@ -43,7 +43,7 @@ class DataController extends AbstractController
     }
 
     #[Route('/raport', name: 'app_raport')]
-    public function generateRaport(Request $request, ManagerRegistry $doctrine)
+    public function generateRaport(Request $request, ManagerRegistry $doctrine): Response
     {
         $dataRepository = $doctrine->getRepository(Data::class);
         $version = $request->get('version');
