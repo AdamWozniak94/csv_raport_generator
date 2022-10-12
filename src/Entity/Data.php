@@ -111,7 +111,7 @@ class Data
     private ?float $payu = null;
 
     #[ORM\Column]
-    private ?int $subscriptionPoints = null;
+    private ?float $subscriptionPoints = null;
 
     #[ORM\Column]
     private ?float $deductB2B = null;
@@ -553,12 +553,12 @@ class Data
         return $this;
     }
 
-    public function getSubscriptionPoints(): ?int
+    public function getSubscriptionPoints(): ?float
     {
         return $this->subscriptionPoints;
     }
 
-    public function setSubscriptionPoints(int $subscriptionPoints): self
+    public function setSubscriptionPoints(float $subscriptionPoints): self
     {
         $this->subscriptionPoints = $subscriptionPoints;
 
