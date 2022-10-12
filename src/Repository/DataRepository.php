@@ -137,7 +137,14 @@ class DataRepository extends ServiceEntityRepository
         }
     }
 
-    public function getRaport1Data(string $dateString)
+    /**
+     * Executes query that returns results for Raport1.
+     *
+     * @param string $dateString
+     * @return array
+     * @throws Exception
+     */
+    public function getRaport1Data(string $dateString): array
     {
         $connection = $this->getEntityManager()->getConnection();
         $date = \DateTime::createFromFormat("Y-m-d", $dateString);
@@ -151,7 +158,14 @@ class DataRepository extends ServiceEntityRepository
         return $stmt->executeQuery(['dateFrom' => $date->format("Y-m-01"), 'dateTo' => $date->format("Y-m-t")])->fetchAllAssociative();
     }
 
-    public function getRaport2Data(string $dateString)
+    /**
+     * Executes query that returns results for Raport2.
+     *
+     * @param string $dateString
+     * @return array
+     * @throws Exception
+     */
+    public function getRaport2Data(string $dateString): array
     {
         $connection = $this->getEntityManager()->getConnection();
 

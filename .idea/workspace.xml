@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d026fe2f-3f67-499c-a4be-c4190ba22ed5" name="Changes" comment="implement getRaportXData methods">
-      <change afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/raport_generator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/raport_generator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+    <list default="true" id="d026fe2f-3f67-499c-a4be-c4190ba22ed5" name="Changes" comment="add generateRaport functionality">
+      <change beforePath="$PROJECT_DIR$/src/Repository/DataRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DataRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +141,7 @@
       <workItem from="1665484946765" duration="4428000" />
       <workItem from="1665491239048" duration="2528000" />
       <workItem from="1665494928887" duration="8794000" />
-      <workItem from="1665563785584" duration="27677000" />
+      <workItem from="1665563785584" duration="28190000" />
     </task>
     <task id="LOCAL-00001" summary="Include essential bundles">
       <created>1665420736714</created>
@@ -192,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665595384822</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add generateRaport functionality">
+      <created>1665599466160</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665599466160</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +216,8 @@
     <MESSAGE value="add importFromCsv &amp; finish form handling + flash messages" />
     <MESSAGE value="move styles &amp; add more + add modal with scripts" />
     <MESSAGE value="implement getRaportXData methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement getRaportXData methods" />
+    <MESSAGE value="add generateRaport functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="add generateRaport functionality" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
