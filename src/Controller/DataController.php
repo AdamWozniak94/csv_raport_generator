@@ -6,7 +6,6 @@ use App\Entity\Data;
 use App\Form\CsvType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,7 +42,7 @@ class DataController extends AbstractController
     }
 
     #[Route('/raport', name: 'app_raport')]
-    public function generateRaport(Request $request, ManagerRegistry $doctrine)
+    public function generateRaport(Request $request, ManagerRegistry $doctrine): Response
     {
         $dataRepository = $doctrine->getRepository(Data::class);
         $version = $request->get('version');
