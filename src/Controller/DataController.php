@@ -37,8 +37,13 @@ class DataController extends AbstractController
         }
 
         return $this->render('data/index.html.twig', [
-            'controller_name' => 'DataController',
             'csv_file_form' => $csvFileForm->createView()
         ]);
+    }
+
+    #[Route('/raport', name: 'app_raport')]
+    public function generateRaport(Request $request)
+    {
+
     }
 }

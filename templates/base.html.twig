@@ -7,17 +7,86 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <style>
+                .example-wrapper {
+                    margin: 1em auto;
+                    max-width: 800px;
+                    width: 95%;
+                    font: 18px/1.5 sans-serif;
+                    display: flex
+                }
+
+                .example-wrapper code {
+                    background: #F5F5F5;
+                    padding: 2px 6px;
+                }
+
                 .flash-error { color: red }
                 .flash-success { color: green }
+
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+
+                .modal-header {
+                    padding: 2px 16px;
+                    background-color: #5c7eb8;
+                    color: white;
+                }
+
+                .modal-body {padding: 2px 16px;}
+
+                .modal-footer {
+                    padding: 2px 16px;
+                    background-color: #5c7eb8;
+                    color: white;
+                }
+
+                .modal-content {
+                    position: relative;
+                    background-color: #fefefe;
+                    margin: auto;
+                    padding: 0;
+                    border: 1px solid #888;
+                    width: 80%;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                    animation-name: animatetop;
+                    animation-duration: 0.4s
+                }
+
+                .close {
+                    color: white;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+
+                .close:hover,
+                .close:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                /* Add Animation */
+                @keyframes animatetop {
+                    from {top: -300px; opacity: 0}
+                    to {top: 0; opacity: 1}
+                }
             </style>
 
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
     <body>
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -28,5 +97,9 @@
         {% endfor %}
 
         {% block body %}{% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
