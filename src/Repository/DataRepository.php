@@ -137,6 +137,33 @@ class DataRepository extends ServiceEntityRepository
         }
     }
 
+    public function getRaport1Data(string $dateString)
+    {
+        $connection = $this->getEntityManager()->getConnection();
+        $date = \DateTime::createFromFormat("Y-m-d", $dateString);
+
+        $sql = "
+            SELECT `sort_code`, CONCAT(`first_name`, ' ', `last_name`) AS Name, `order_status`, COUNT(*), SUM(`offer_price`), GROUP_CONCAT(DISTINCT `offer_name` SEPARATOR ' | ') FROM `data`
+            WHERE `order_date` BETWEEN :dateFrom AND :dateTo
+            GROUP BY `sort_code`, `order_status`
+        ";
+        $stmt = $connection->prepare($sql);
+        return $stmt->executeQuery(['dateFrom' => $date->format("Y-m-01"), 'dateTo' => $date->format("Y-m-t")])->fetchAllAssociative();
+    }
+
+    public function getRaport2Data(string $dateString)
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+            SELECT MONTH(`order_date`) as month, IF(`upgrade_from_order` IS NOT NULL, 'tak', 'nie') as from_upgrade, `offer_name`, COUNT(*) FROM `data` 
+            WHERE `order_date` > :raportDate
+            GROUP BY month, from_upgrade, `offer_name`
+        ";
+        $stmt = $connection->prepare($sql);
+        return $stmt->executeQuery(['raportDate' => $dateString])->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Data[] Returns an array of Data objects
 //     */
